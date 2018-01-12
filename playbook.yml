@@ -1,0 +1,11 @@
+---
+- hosts: aws-servers
+  vars:
+    http_port: 80
+    max_clients: 200
+  remote_user: ec2-user
+  tasks:
+  - name: Fetch Java version
+    shell: java -version 2>&1 | grep version | awk '{print $3}' | sed 's/"//g'
+    register: java_version
+
